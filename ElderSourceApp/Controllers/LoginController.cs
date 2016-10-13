@@ -21,7 +21,7 @@ namespace ElderSourceApp.Controllers
 
                 return View("UserLandingView");
             }
-            else if (item == "User Does not Exists")
+            else if (item == "User Does not Exist")
 
             {
                 ViewBag.NotValidUser = item;
