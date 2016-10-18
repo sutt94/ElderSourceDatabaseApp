@@ -11,6 +11,7 @@ namespace ElderSourceApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            //BRANDON IS STUPID
             return View();
         }
     }
