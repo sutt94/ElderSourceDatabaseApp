@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElderSourceApp", "ElderSourceApp\ElderSourceApp.csproj", "{E39DFA5F-7751-4046-A926-E72333DDC9CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElderSourceApp", "ElderSourceApp\ElderSourceApp.csproj", "{608170FC-6841-4791-A50B-9B0C9BC3577E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E39DFA5F-7751-4046-A926-E72333DDC9CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E39DFA5F-7751-4046-A926-E72333DDC9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E39DFA5F-7751-4046-A926-E72333DDC9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E39DFA5F-7751-4046-A926-E72333DDC9CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{608170FC-6841-4791-A50B-9B0C9BC3577E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{608170FC-6841-4791-A50B-9B0C9BC3577E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{608170FC-6841-4791-A50B-9B0C9BC3577E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{608170FC-6841-4791-A50B-9B0C9BC3577E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
