@@ -81,3 +81,4 @@ C:\Users\Billy\Desktop\ElderSource\ElderSourceDatabaseApp\ElderSourceApp\obj\Deb
 C:\Users\Billy\Desktop\ElderSource\ElderSourceDatabaseApp\ElderSourceApp\obj\Debug\ElderSourceApp.pdb
 C:\Users\Billy\Desktop\ElderSource\ElderSourceDatabaseApp\ElderSourceApp\obj\Debug\ElderSourceApp.Migrations.InitialCreate.resources
 C:\Users\Billy\Desktop\ElderSource\ElderSourceDatabaseApp\ElderSourceApp\obj\Debug\ElderSourceApp.csproj.GenerateResource.Cache
+C:\Users\Billy\Desktop\ElderSource\ElderSourceDatabaseApp\ElderSourceApp\obj\Debug\ElderSourceApp.csprojResolveAssemblyReference.cache

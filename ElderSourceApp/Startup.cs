@@ -35,10 +35,10 @@ namespace ElderSourceApp
                 //Here we create a Admin super user who will maintain the website                  
 
                 var user = new ApplicationUser();
-                user.UserName = "admin";
+                user.UserName = "sutt94";
                 user.Email = "sutt94@gmail.com";
 
-                string userPWD = "admin";
+                string userPWD = "Moosesurfsup1994bcs!";
 
                 var chkUser = UserManager.Create(user, userPWD);
 

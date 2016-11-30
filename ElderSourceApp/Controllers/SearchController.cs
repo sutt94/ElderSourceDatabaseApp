@@ -20,7 +20,7 @@ namespace ElderSourceApp.Controllers
                .Where(r => companyType == null || r.CompanyType.StartsWith(companyType))
                .Where(r => city == null || r.City.StartsWith(city))
                .Where(r => zipCode == null || r.ZipCode.StartsWith(zipCode))
-               .Select(r => new CompanyListViewModel
+               .Select(r => new CompanyListViewModel 
                {
                    CompanyModelID = r.CompanyModelID,
                    CompanyName = r.CompanyName,
