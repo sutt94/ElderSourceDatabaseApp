@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.displayMenu == "Yes")
+{
+    <h1>Welcome <strong>@ViewBag.Name</strong>. You have succesfully logged in as an administrator. </h1>
+    
+        
+    
+}
+else
+{
+    <h2>  Welcome <strong>@ViewBag.Name</strong> You have succesfully logged in as an employee. </h2>
+}  
+
