@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ElderSourceApp.Models.CompanyListViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<form method="get">
+    <h2>Company Search</h2>
+    @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+    {
+        <table style="width:40%">
+            <tr>
+                <th>Company Name:</th>
+                <th><input type="search" name="companyName" /></th>
+
+            </tr>
+            <tr>
+                <td><b>Company Type:<b></b></td>
+                <td><input type="search" name="companyType" /></td>
+
+            </tr>
+            <tr>
+                <td><b>City:</b></td>
+                <td><input type="search" name="city" /></td>
+
+            </tr>
+            <tr>
+                <td><b>Zip Code:<b></b></td>
+                <td><input type="search" name="zipCode" /></td>
+
+            </tr>
+            <tr>
+                <td><input type="submit" value="Search" /></td>
+
+            </tr>
+        </table>
+
+ 
+
+
+
+
+        foreach (var item in Model)
+        {
+    <div>
+        <hr />
+        <div>@item.CompanyName</div>
+        <div>@item.City</div>
+        <div>@item.State</div>
+        <div>@item.ZipCode</div>
+        <div>@item.CompanyType</div>
+        <div>@item.Phone</div>
+        <hr />
+
+    </div>
+    }
+
+}
+else {<h4>You do not have permission to access this page.</h4> };

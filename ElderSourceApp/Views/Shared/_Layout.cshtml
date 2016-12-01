@@ -26,14 +26,15 @@
 {
     <li>@Html.ActionLink("Create Account", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
-                    <li>@Html.ActionLink("Company Management", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Company Management", "Index", "Company")</li>
+}@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+{
 
-
-                    <li>@Html.ActionLink("Company Database", "Contact", "Home")</li>
-
+                    <li>@Html.ActionLink("Company Database Search", "Index", "Search")</li>
+}
 
                     
-}
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

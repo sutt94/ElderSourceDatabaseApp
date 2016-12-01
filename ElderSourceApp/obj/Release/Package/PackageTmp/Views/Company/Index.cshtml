@@ -1,0 +1,100 @@
+﻿@model IEnumerable<ElderSourceApp.Models.CompanyModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Company Management</h2>
+@if (User.IsInRole("Admin"))
+{
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            City
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            Zip
+        </th>
+        <th>
+            Service
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasSymbol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeesTrained)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasPolicies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasDeclaration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InArrears)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasSymbol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeesTrained)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasPolicies)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasDeclaration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InArrears)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.CompanyModelID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.CompanyModelID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.CompanyModelID })
+        </td>
+    </tr>
+}
+
+</table>
+}
+else
+{
+    <h4>You do not have permission to access this page.</h4>
+}
