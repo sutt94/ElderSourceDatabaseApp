@@ -35,6 +35,8 @@ namespace ElderSourceApp
                 //Here we create a Admin super user who will maintain the website                  
 
                 var user = new ApplicationUser();
+                user.firstName = "Super";
+                user.lastName = "Admin";
                 user.UserName = "sutt94";
                 user.Email = "sutt94@gmail.com";
 
@@ -51,10 +53,10 @@ namespace ElderSourceApp
             }
 
             // creating Creating Manager role    
-            if (!roleManager.RoleExists("Manager"))
+            if (!roleManager.RoleExists("AccountManager"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Manager";
+                role.Name = "AccountManager";
                 roleManager.Create(role);
 
             }
