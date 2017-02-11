@@ -10,11 +10,12 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ElderSourceApp.Controllers
 {
 
-
+    [Authorize(Roles = "Admin, AccountManager")]
     public class AccountAdminController : Controller
     {
         public AccountAdminController()
@@ -140,9 +141,47 @@ namespace ElderSourceApp.Controllers
             return View();
         }
 
+        //
+        // GET: /Account/ResetPassword
+        [AllowAnonymous]
+        public ActionResult AdminResetPassword()
+        {
+            return View();
+        }
 
+        //
+        // POST: /Account/ResetPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AdminResetPassword(AdminResetPasswordViewModel item,  String id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(item);
+            }
+            var user = await UserManager.FindByIdAsync(id);
+            var token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
 
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                return RedirectToAction("ResetPasswordConfirmation", "AccountAdmin");
+            }
+            var result = await UserManager.ResetPasswordAsync(user.Id, token, item.NewPassword);
+             
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ResetPasswordConfirmation", "AccountAdmin");
+            }
+            
+            return View();
+        }
 
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
 
 
 
