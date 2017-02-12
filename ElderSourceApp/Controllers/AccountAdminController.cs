@@ -160,6 +160,8 @@ namespace ElderSourceApp.Controllers
             {
                 return View(item);
             }
+
+
             var user = await UserManager.FindByIdAsync(id);
             var token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
 
@@ -183,7 +185,52 @@ namespace ElderSourceApp.Controllers
             return View();
         }
 
+        //
+        // GET: /Users/Delete/5
+        public async Task<ActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = await UserManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
 
+        //
+        // POST: /Users/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var user = await UserManager.FindByIdAsync(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                var result = await UserManager.DeleteAsync(user);
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        
 
 
 

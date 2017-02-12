@@ -297,6 +297,7 @@
     <Content Include="Views\AccountAdmin\Index.cshtml" />
     <Content Include="Views\AccountAdmin\AdminResetPassword.cshtml" />
     <Content Include="Views\AccountAdmin\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\AccountAdmin\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

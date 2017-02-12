@@ -242,9 +242,9 @@ namespace ElderSourceApp.Models
         [Required(AllowEmptyStrings = false)]
         [Display(Name = "Email")]
         [EmailAddress]
+        
         public string Email { get; set; }
 
-        // Add the Address Info:
         public string userName { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
