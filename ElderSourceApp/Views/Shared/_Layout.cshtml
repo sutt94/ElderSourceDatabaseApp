@@ -24,13 +24,24 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
 @if (User.IsInRole("Admin"))
 {
-    <li>@Html.ActionLink("Create Account", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Account Management", "Index", "AccountAdmin", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
-                    <li>@Html.ActionLink("Company Management", "Index", "Company")</li>
-}@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+    <li>@Html.ActionLink("Company Management", "Index", "Company")</li>
+
+    <li>@Html.ActionLink("Company Database Search", "Index", "Search")</li>
+}
+
+@if (User.IsInRole("AccountManager"))
+{
+        <li>@Html.ActionLink("Account Management", "Index", "AccountAdmin", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+
+        <li>@Html.ActionLink("Company Database Search", "Index", "Search")</li>
+    }
+
+@if (User.IsInRole("Employee"))
 {
 
-                    <li>@Html.ActionLink("Company Database Search", "Index", "Search")</li>
+<li>@Html.ActionLink("Company Database Search", "Index", "Search")</li>
 }
 
                     

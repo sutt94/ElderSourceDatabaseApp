@@ -31,6 +31,9 @@
             Phone
         </th>
         <th>
+            Last Paid Date
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.HasSymbol)
         </th>
         <th>
@@ -44,6 +47,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.InArrears)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastPaidDate)
         </th>
         <th></th>
     </tr>
@@ -83,6 +89,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.InArrears)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastPaidDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.CompanyModelID }) |

@@ -46,7 +46,7 @@ namespace ElderSourceApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyModelID,CompanyName,City,State,ZipCode,CompanyType,Phone,HasSymbol,EmployeesTrained,HasPolicies,HasDeclaration,InArrears")] CompanyModel companyModel)
+        public ActionResult Create([Bind(Include = "CompanyModelID,CompanyName,City,State,ZipCode,CompanyType,Phone,HasSymbol,EmployeesTrained,HasPolicies,HasDeclaration,InArrears, lastDatePaid, description")] CompanyModel companyModel)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace ElderSourceApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyModelID,CompanyName,City,State,ZipCode,CompanyType,Phone,HasSymbol,EmployeesTrained,HasPolicies,HasDeclaration,InArrears")] CompanyModel companyModel)
+        public ActionResult Edit([Bind(Include = "CompanyModelID,CompanyName,City,State,ZipCode,CompanyType,Phone,HasSymbol,EmployeesTrained,HasPolicies,HasDeclaration,InArrears,lastDatePaid, description")] CompanyModel companyModel)
         {
             if (ModelState.IsValid)
             {

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -22,6 +23,10 @@ namespace ElderSourceApp.Models
         public Boolean HasPolicies { get; set; }
         public Boolean HasDeclaration { get; set; }
         public Boolean InArrears { get; set; }
+        public String description { get; set; }
+        [Column(TypeName = "DateTime2")]
+        public DateTime LastPaidDate { get; set; }
+
 
     }
 }
