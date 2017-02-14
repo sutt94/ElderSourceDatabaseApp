@@ -33,25 +33,64 @@
             </tr>
         </table>
 
- 
+
 
 
 
 
         foreach (var item in Model)
         {
-    <div>
-        <hr />
-        <div>@item.CompanyName</div>
-        <div>@item.City</div>
-        <div>@item.State</div>
-        <div>@item.ZipCode</div>
-        <div>@item.CompanyType</div>
-        <div>@item.Phone</div>
-        <hr />
+            <table class="table">
+                <tr>
+                    <th>
+                        Name
+                    </th>
 
-    </div>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Zip Code
+                    </th>
+                    <th>
+                       Company Type
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @item.CompanyName
+                    </td>
+                    <td>
+                        @item.City
+                    </td>
+                    <td>
+                        @item.State
+                    </td>
+                    <td>
+                        @item.ZipCode
+                    </td>
+                    <td>
+                        @item.CompanyType
+                    </td>
+                    <td>
+                        @item.Phone
+                    </td>
+
+
+
+                </tr>
+
+            </table>
+
+
+        }
+
     }
-
-}
-else {<h4>You do not have permission to access this page.</h4> };
+    else
+    {<h4>You do not have permission to access this page.</h4> };

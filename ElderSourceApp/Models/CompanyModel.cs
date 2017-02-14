@@ -25,7 +25,8 @@ namespace ElderSourceApp.Models
         public Boolean InArrears { get; set; }
         public String description { get; set; }
         [Column(TypeName = "DateTime2")]
-        public DateTime LastPaidDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? LastPaidDate { get; set; }
 
 
     }

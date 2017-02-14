@@ -7,6 +7,7 @@ using ElderSourceApp.Models;
 
 namespace ElderSourceApp.Controllers
 {
+    [Authorize(Roles = "Admin, AccountManager, Employee")]
     public class SearchController : Controller
     {
         // GET: Search
@@ -16,6 +17,10 @@ namespace ElderSourceApp.Controllers
             var model =
                _db.Company
                .OrderByDescending(r => r.CompanyName)
+               .Where(r => r.EmployeesTrained)
+               .Where(r => r.HasPolicies)
+               .Where(r => r.HasSymbol)
+               .Where(r => r.HasDeclaration)
                .Where(r => companyName == null || r.CompanyName.StartsWith(companyName))
                .Where(r => companyType == null || r.CompanyType.StartsWith(companyType))
                .Where(r => city == null || r.City.StartsWith(city))
