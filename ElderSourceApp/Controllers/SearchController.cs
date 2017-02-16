@@ -17,6 +17,7 @@ namespace ElderSourceApp.Controllers
             var model =
                _db.Company
                .OrderByDescending(r => r.CompanyName)
+               .Where(r => !r.InArrears)
                .Where(r => r.EmployeesTrained)
                .Where(r => r.HasPolicies)
                .Where(r => r.HasSymbol)

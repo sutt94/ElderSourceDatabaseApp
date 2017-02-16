@@ -33,35 +33,37 @@
             </tr>
         </table>
 
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    City
+                </th>
+                <th>
+                    State
+                </th>
+                <th>
+                    Zip Code
+                </th>
+                <th>
+                    Company Type
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th></th>
+            </tr>
 
 
 
+            @foreach (var item in Model)
+            {
 
 
-        foreach (var item in Model)
-        {
-            <table class="table">
-                <tr>
-                    <th>
-                        Name
-                    </th>
 
-                    <th>
-                        City
-                    </th>
-                    <th>
-                        State
-                    </th>
-                    <th>
-                        Zip Code
-                    </th>
-                    <th>
-                       Company Type
-                    </th>
-                    <th>
-                        Phone Number
-                    </th>
-                </tr>
                 <tr>
                     <td>
                         @item.CompanyName
@@ -86,10 +88,11 @@
 
                 </tr>
 
-            </table>
 
 
-        }
+
+            }
+        </table>
 
     }
     else
