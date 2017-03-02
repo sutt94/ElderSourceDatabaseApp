@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ElderSourceApp.Models;
+using System.Net;
 
 namespace ElderSourceApp.Controllers
 {
@@ -12,6 +13,8 @@ namespace ElderSourceApp.Controllers
     {
         // GET: Search
         CompanyContext _db = new CompanyContext();
+        private object db;
+
         public ActionResult Index(string companyName = null, string companyType = null, string city = null, string zipCode = null)
         {
             var model =
@@ -43,6 +46,20 @@ namespace ElderSourceApp.Controllers
                });
 
             return View(model);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CompanyModel companyModel = _db.Company.Find(id);
+            if (companyModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(companyModel);
         }
     }
 }

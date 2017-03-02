@@ -231,7 +231,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\PrismCompanyManagement - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\PrismPrototype.pubxml" />
+    <None Include="Properties\PublishProfiles\PrismUpdated.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -294,6 +296,7 @@
     <Content Include="Views\AccountAdmin\AdminResetPassword.cshtml" />
     <Content Include="Views\AccountAdmin\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\AccountAdmin\Delete.cshtml" />
+    <Content Include="Views\Search\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
