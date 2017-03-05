@@ -4,18 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ElderSourceApp.Models;
+using System.Net;
 
 namespace ElderSourceApp.Controllers
 {
+    [Authorize(Roles = "Admin, AccountManager, Employee")]
     public class SearchController : Controller
     {
         // GET: Search
         CompanyContext _db = new CompanyContext();
+        private object db;
+
         public ActionResult Index(string companyName = null, string companyType = null, string city = null, string zipCode = null)
         {
             var model =
                _db.Company
                .OrderByDescending(r => r.CompanyName)
+               .Where(r => !r.InArrears)
+               .Where(r => r.EmployeesTrained)
+               .Where(r => r.HasPolicies)
+               .Where(r => r.HasSymbol)
+               .Where(r => r.HasDeclaration)
                .Where(r => companyName == null || r.CompanyName.StartsWith(companyName))
                .Where(r => companyType == null || r.CompanyType.StartsWith(companyType))
                .Where(r => city == null || r.City.StartsWith(city))
@@ -37,6 +46,20 @@ namespace ElderSourceApp.Controllers
                });
 
             return View(model);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CompanyModel companyModel = _db.Company.Find(id);
+            if (companyModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(companyModel);
         }
     }
 }

@@ -23,11 +23,11 @@ namespace ElderSourceApp
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
 
-            // In Startup iam creating first Admin Role and creating a default Admin User    
+            // create admin roll and default admin user   
             if (!roleManager.RoleExists("Admin"))
             {
 
-                // first we create Admin rool   
+                // create admin roll
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
@@ -35,14 +35,16 @@ namespace ElderSourceApp
                 //Here we create a Admin super user who will maintain the website                  
 
                 var user = new ApplicationUser();
+                user.firstName = "Super";
+                user.lastName = "Admin";
                 user.UserName = "sutt94";
                 user.Email = "sutt94@gmail.com";
 
-                string userPWD = "Moosesurfsup1994bcs!";
+                string userPWD = "Moose1!";
 
                 var chkUser = UserManager.Create(user, userPWD);
 
-                //Add default User to Role Admin   
+                //add default user to admin roll  
                 if (chkUser.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Admin");
@@ -50,16 +52,16 @@ namespace ElderSourceApp
                 }
             }
 
-            // creating Creating Manager role    
-            if (!roleManager.RoleExists("Manager"))
+            // create account manager roll    
+            if (!roleManager.RoleExists("AccountManager"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Manager";
+                role.Name = "AccountManager";
                 roleManager.Create(role);
 
             }
 
-            // creating Creating Employee role    
+            // create employee roll   
             if (!roleManager.RoleExists("Employee"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();

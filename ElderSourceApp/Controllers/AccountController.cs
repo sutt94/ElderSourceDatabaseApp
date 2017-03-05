@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ElderSourceApp.Models;
 using System.Web.Security;
+using System.Collections.Generic;
 
 namespace ElderSourceApp.Controllers
 
@@ -58,6 +59,20 @@ namespace ElderSourceApp.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Index()
+        {
+            var Db = new ApplicationDbContext();
+            var users = Db.Users;
+            var model = new List<IndexUserViewModel>();
+            foreach (var user in users)
+            {
+                var u = new IndexUserViewModel(user);
+                model.Add(u);
+            }
+            return View(model);
         }
 
         //
@@ -164,7 +179,7 @@ namespace ElderSourceApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, firstName = model.firstName, lastName = model.lastName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -488,6 +503,7 @@ namespace ElderSourceApp.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
+
         }
         #endregion
     }

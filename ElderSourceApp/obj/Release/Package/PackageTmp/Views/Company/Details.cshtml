@@ -7,19 +7,19 @@
 <h2>Details</h2>
 
 <div>
-    <h4>CompanyModel</h4>
+    <h4>Company Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CompanyName)
+            Company Name:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CompanyName)
+           @Html.DisplayFor(model => model.CompanyName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            City:
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            State:
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ZipCode)
+            Zip Code:
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CompanyType)
+            Service Type:
         </dt>
 
         <dd>
@@ -51,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Phone)
+            Phone Number:
         </dt>
 
         <dd>
@@ -59,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HasSymbol)
+            Outward Symbol:
         </dt>
 
         <dd>
@@ -67,7 +67,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EmployeesTrained)
+            Employees Trained:
         </dt>
 
         <dd>
@@ -75,7 +75,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HasPolicies)
+            Policies in Place:
         </dt>
 
         <dd>
@@ -83,7 +83,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HasDeclaration)
+            Has Declaration:
         </dt>
 
         <dd>
@@ -91,13 +91,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InArrears)
+            In Arrears:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.InArrears)
         </dd>
-
+        <dt>
+            Date Dues Last Paid:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastPaidDate)
+        </dd>
+        <dt>
+            Company Description:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
     </dl>
 </div>
 <p>

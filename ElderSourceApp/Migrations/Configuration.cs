@@ -9,8 +9,7 @@ namespace ElderSourceApp.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "ElderSourceApp.Models.CompanyContext";
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ElderSourceApp.Models.CompanyContext context)
