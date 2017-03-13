@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ElderSourceApp.Models.CompanyListViewModel>
+
+
+
+<div id="companyList">
+    @foreach (var item in Model)
+    {
+
+        <div>
+            @item.CompanyName
+        </div>
+                    <div>
+                        @item.City
+                    </div>
+                    <div>
+                        @item.State
+                    </div>
+                    <div>
+                        @item.ZipCode
+                    </div>
+                    <div>
+                        @item.CompanyType
+                    </div>
+                    <div>
+                        @item.Phone
+                    </div>
+                    <div>
+                        @Html.ActionLink("Details", "Details", new { id = item.CompanyModelID })
+                    </div>
+    }
+
+</div>
+

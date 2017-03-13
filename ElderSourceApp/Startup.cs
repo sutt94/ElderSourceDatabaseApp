@@ -37,10 +37,10 @@ namespace ElderSourceApp
                 var user = new ApplicationUser();
                 user.firstName = "Super";
                 user.lastName = "Admin";
-                user.UserName = "sutt94";
+                user.UserName = "a";
                 user.Email = "sutt94@gmail.com";
 
-                string userPWD = "Moosesurfsup1994bcs!";
+                string userPWD = "a";
 
                 var chkUser = UserManager.Create(user, userPWD);
 

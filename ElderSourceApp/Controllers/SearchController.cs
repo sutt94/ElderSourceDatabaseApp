@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ElderSourceApp.Models;
 using System.Net;
+using PagedList;
 
 namespace ElderSourceApp.Controllers
 {
@@ -15,7 +16,7 @@ namespace ElderSourceApp.Controllers
         CompanyContext _db = new CompanyContext();
         private object db;
 
-        public ActionResult Index(string companyName = null, string companyType = null, string city = null, string zipCode = null)
+        public ActionResult Index(int page =1, string companyName = null, string companyType = null, string city = null, string zipCode = null)
         {
             var model =
                _db.Company
@@ -43,7 +44,12 @@ namespace ElderSourceApp.Controllers
                    HasPolicies = r.HasPolicies,
                    HasDeclaration = r.HasDeclaration,
                    InArrears = r.InArrears
-               });
+               }).ToPagedList(page, 10);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Companies", model);
+            }
 
             return View(model);
         }
@@ -60,6 +66,27 @@ namespace ElderSourceApp.Controllers
                 return HttpNotFound();
             }
             return View(companyModel);
+        }
+
+        public JsonResult Autocomplete(string term)
+        {
+            var model =
+              _db.Company
+              .OrderByDescending(r => r.CompanyName)
+              .Where(r => !r.InArrears)
+              .Where(r => r.EmployeesTrained)
+              .Where(r => r.HasPolicies)
+              .Where(r => r.HasSymbol)
+              .Where(r => r.HasDeclaration)
+              .Where(r => r.CompanyName.StartsWith(term))
+              .Take(10)
+              .Select(r => new
+              {
+                  label = r.CompanyName
+              });
+
+
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }
