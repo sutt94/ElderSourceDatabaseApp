@@ -244,14 +244,16 @@ namespace ElderSourceApp.Models
         [EmailAddress]
         
         public string Email { get; set; }
-
+        [Required(AllowEmptyStrings = false)]
         public string userName { get; set; }
+        [Required(AllowEmptyStrings = false)]
         public string firstName { get; set; }
+        [Required(AllowEmptyStrings = false)]
         public string lastName { get; set; }
 
         // Use a sensible display name for views:
-        
 
+        
         public IEnumerable<SelectListItem> RolesList { get; set; }
     }
 
@@ -261,12 +263,14 @@ namespace ElderSourceApp.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
-        public string NewPassword { get; set; }
+        [Display(Name = "Password")]
+        public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Confirm password")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+       
     }
 }

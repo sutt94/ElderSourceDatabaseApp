@@ -18,8 +18,17 @@ namespace ElderSourceApp.Controllers
     [Authorize(Roles = "Admin, AccountManager")]
     public class AccountAdminController : Controller
     {
+        private CompanyContext db = new CompanyContext();
         public AccountAdminController()
         {
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
 
         public AccountAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
@@ -58,6 +67,8 @@ namespace ElderSourceApp.Controllers
         // GET: /Users/
         public async Task<ActionResult> Index()
         {
+
+
             return View(await UserManager.Users.ToListAsync());
         }
 
@@ -98,7 +109,6 @@ namespace ElderSourceApp.Controllers
            ;
         }
 
-        // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Email,userName,firstName,lastName")] EditUserViewModel editUser, params string[] selectedRole)
@@ -115,7 +125,7 @@ namespace ElderSourceApp.Controllers
                 user.Email = editUser.Email;
                 user.firstName = editUser.firstName;
                 user.lastName = editUser.lastName;
-                
+
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 
@@ -170,13 +180,13 @@ namespace ElderSourceApp.Controllers
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "AccountAdmin");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, token, item.NewPassword);
+            var result = await UserManager.ResetPasswordAsync(user.Id, token, item.Password);
              
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "AccountAdmin");
             }
-            
+            AddErrors(result);
             return View();
         }
 

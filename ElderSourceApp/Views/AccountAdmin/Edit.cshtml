@@ -14,22 +14,23 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Edit User Account</h4>
+        <h2>Update User Account</h2>
         <hr />
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary("", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Email, "Email Address:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Email, new { @readonly = "readonly", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.userName, "UserName", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.userName, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.userName, new { @readonly = "readonly", @class = "form-control"  } )
+                @Html.ValidationMessageFor(model => model.userName)
             </div>
         </div>
         <div class="form-group">

@@ -25,10 +25,10 @@ namespace ElderSourceApp.Controllers
                .Where(r => r.HasPolicies)
                .Where(r => r.HasSymbol)
                .Where(r => r.HasDeclaration)
-               .Where(r => companyName == null || r.CompanyName.StartsWith(companyName))
-               .Where(r => companyType == null || r.CompanyType.StartsWith(companyType))
-               .Where(r => city == null || r.City.StartsWith(city))
-               .Where(r => zipCode == null || r.ZipCode.StartsWith(zipCode))
+               .Where(r => companyName == null || r.CompanyName.Contains(companyName))
+               .Where(r => companyType == null || r.CompanyType.Contains(companyType))
+               .Where(r => city == null || r.City.Contains(city))
+               .Where(r => zipCode == null || r.ZipCode.Contains(zipCode))
                .Select(r => new CompanyListViewModel 
                {
                    CompanyModelID = r.CompanyModelID,
