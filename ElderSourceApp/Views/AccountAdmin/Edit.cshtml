@@ -15,6 +15,7 @@
 
     <div class="form-horizontal">
         <h2>Update User Account</h2>
+
         <hr />
         @Html.ValidationSummary("", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -23,6 +24,7 @@
             @Html.LabelFor(model => model.Email, "Email Address:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Email, new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email)
                 @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
@@ -37,24 +39,41 @@
             @Html.LabelFor(model => model.firstName, "First Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.firstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.firstName)
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.lastName, "Last Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.lastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.lastName)
             </div>
         </div>
+@if (User.IsInRole("Admin")) { 
         <div class="form-group">
             @Html.Label("Roles", new { @class = "control-label col-md-2" })
             <span class=" col-md-10">
                 @foreach (var item in Model.RolesList)
                 {
                     <input type="radio" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
-                    @Html.Label(item.Value, new { @class = "control-label" })
+                    @Html.Label(item.Value, new { @class = "control-label"})
                 }
             </span>
         </div>
+}
+else
+{
+    <div class="form-group">
+        @Html.Label("Roles", new { @class = "control-label col-md-2" })
+        <span class=" col-md-10">
+            @foreach (var item in Model.RolesList)
+            {
+                <input type="radio" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" new { disabled="disabled" } />
+                    @Html.Label(item.Value, new { @class = "control-label" })
+            }
+        </span>
+    </div>
+}
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

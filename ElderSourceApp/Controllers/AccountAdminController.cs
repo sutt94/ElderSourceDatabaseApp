@@ -113,6 +113,7 @@ namespace ElderSourceApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Email,userName,firstName,lastName")] EditUserViewModel editUser, params string[] selectedRole)
         {
+
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByIdAsync(editUser.Id);
@@ -153,6 +154,7 @@ namespace ElderSourceApp.Controllers
 
         //
         // GET: /Account/ResetPassword
+        [Authorize(Roles = "Admin")]
         [AllowAnonymous]
         public ActionResult AdminResetPassword()
         {
@@ -161,6 +163,7 @@ namespace ElderSourceApp.Controllers
 
         //
         // POST: /Account/ResetPassword
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
