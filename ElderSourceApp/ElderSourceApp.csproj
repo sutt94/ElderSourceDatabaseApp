@@ -275,6 +275,7 @@
     <None Include="Properties\PublishProfiles\PrismCompanyManagement - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\PrismPrototype.pubxml" />
     <None Include="Properties\PublishProfiles\PrismUpdated.pubxml" />
+    <None Include="Properties\PublishProfiles\Windows Server Package.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />

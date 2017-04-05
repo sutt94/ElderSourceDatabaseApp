@@ -24,7 +24,7 @@
         </th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.OrderBy(x => x.lastName))
     {
         <tr>
             <td>

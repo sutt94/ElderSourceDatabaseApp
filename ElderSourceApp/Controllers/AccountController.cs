@@ -173,29 +173,52 @@ namespace ElderSourceApp.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        
+
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (User.IsInRole("Admin"))
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, firstName = model.firstName, lastName = model.lastName };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, firstName = model.firstName, lastName = model.lastName };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
 
-                    return View("~/Views/Users/AccountCreated.cshtml");
+                        return View("~/Views/Users/AccountCreated.cshtml");
+                    }
+                    ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name", "Name");
+                    AddErrors(result);
                 }
-                ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name", "Name");
-                AddErrors(result);
+
+                // If we got this far, something failed, redisplay form   
+                return View(model);
+            }else
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, firstName = model.firstName, lastName = model.lastName };
+                    model.UserRoles = "Employee";
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+
+                        return View("~/Views/Users/AccountCreated.cshtml");
+                    }
+                    ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name", "Name");
+                    AddErrors(result);
+                }
+
+                // If we got this far, something failed, redisplay form   
+                return View(model);
             }
-
-            // If we got this far, something failed, redisplay form   
-            return View(model);
         }
-
+        
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
