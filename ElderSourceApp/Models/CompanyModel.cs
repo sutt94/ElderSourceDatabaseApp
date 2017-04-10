@@ -24,6 +24,7 @@ namespace ElderSourceApp.Models
         public Boolean HasDeclaration { get; set; }
         public Boolean InArrears { get; set; }
         public String description { get; set; }
+        [DataType(DataType.Date)]
         [Column(TypeName = "DateTime2")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? LastPaidDate { get; set; }

@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Company Details</h2>
 
 <div>
-    <h4>Company Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -88,20 +87,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.HasDeclaration)
-        </dd>
-
-        <dt>
-            In Arrears:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InArrears)
-        </dd>
-        <dt>
-            Date Dues Last Paid:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastPaidDate)
         </dd>
         <dt>
             Company Description:
