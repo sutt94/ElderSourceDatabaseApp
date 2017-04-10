@@ -4,6 +4,7 @@
     ViewBag.Title = "Create";
 }
 
+
 <h2>Add a Company to the Database</h2>
 
 
@@ -64,6 +65,8 @@
                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
             </div>
         </div>
+        
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.HasSymbol, "Outward Symbol:", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -115,24 +118,19 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.LastPaidDate, "Last Date Paid Dues:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LastPaidDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LastPaidDate)
-                    @Html.ValidationMessageFor(model => model.LastPaidDate, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.LastPaidDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastPaidDate, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.description,  "Company Description:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.description, "Company Description:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.description)
-                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-                </div>
+                @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

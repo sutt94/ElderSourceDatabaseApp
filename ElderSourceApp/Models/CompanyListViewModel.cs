@@ -19,5 +19,6 @@ namespace ElderSourceApp.Models
         public Boolean HasPolicies { get; set; }
         public Boolean HasDeclaration { get; set; }
         public Boolean InArrears { get; set; }
+
     }
 }

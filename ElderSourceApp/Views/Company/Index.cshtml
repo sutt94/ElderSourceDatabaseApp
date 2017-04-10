@@ -1,31 +1,37 @@
 ﻿@model IEnumerable<ElderSourceApp.Models.CompanyModel>
 
-@{
-    ViewBag.Title = "Index";
-}
 
 <h2>Company Management</h2>
+<p>
+    @using (Html.BeginForm())
+    {
+    <p>
+        Name: @Html.TextBox("searchstring")
+        <input type="submit" value="Filter" />
+    </p>
+    }
 @if (User.IsInRole("Admin"))
 {
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
 <table class="table">
     <tr>
         <th>
-            Name
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            City
+            @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Zip Code
+            @Html.ActionLink("Zip Code", "Index", new { sortOrder = ViewBag.ZipSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Service
+            @Html.ActionLink("Service", "Index", new { sortOrder = ViewBag.ServiceSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Last Paid Date
+            @Html.ActionLink("Last Paid Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -57,6 +63,8 @@
 }
 
 </table>
+<br />
+  
 }
 else
 {

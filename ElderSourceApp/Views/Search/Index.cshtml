@@ -1,58 +1,42 @@
-﻿@model IEnumerable<ElderSourceApp.Models.CompanyListViewModel>
+﻿@model IEnumerable<ElderSourceApp.Models.CompanyModel>
 @{
     ViewBag.Title = "Index";
 }
-<form method="get">
+
+
     <h2>Company Search</h2>
-    @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+<p>
+    @using (Html.BeginForm())
     {
-        <table style="width:40%">
-            <tr>
-                <th>Company Name:</th>
-                <th><input type="search" name="companyName" /></th>
+    <p>
+        Name: @Html.TextBox("searchstring")
+        <input type="submit" value="Filter" />
+    </p>
+    }
+@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+{
+      
 
-            </tr>
-            <tr>
-                <td><b>Company Type:<b></b></td>
-                <td><input type="search" name="companyType" /></td>
-
-            </tr>
-            <tr>
-                <td><b>City:</b></td>
-                <td><input type="search" name="city" /></td>
-
-            </tr>
-            <tr>
-                <td><b>Zip Code:<b></b></td>
-                <td><input type="search" name="zipCode" /></td>
-
-            </tr>
-            <tr>
-                <td><input type="submit" value="Search" /></td>
-
-            </tr>
-        </table>
 
         <table class="table">
             <tr>
                 <th>
-                    Name
-                </th>
-
-                <th>
-                    City
+                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    State
+                    @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    Zip Code
+                    @Html.ActionLink("Zip Code", "Index", new { sortOrder = ViewBag.ZipSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    Company Type
+                    @Html.ActionLink("Service", "Index", new { sortOrder = ViewBag.ServiceSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    Phone Number
+                    @Html.ActionLink("Last Paid Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink("Phone Number", "Index", new { sortOrder = ViewBag.PhoneSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th></th>
             </tr>
@@ -72,13 +56,13 @@
                         @item.City
                     </td>
                     <td>
-                        @item.State
-                    </td>
-                    <td>
                         @item.ZipCode
                     </td>
                     <td>
                         @item.CompanyType
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastPaidDate)
                     </td>
                     <td>
                         @item.Phone
@@ -99,4 +83,4 @@
 
     }
     else
-    {<h4>You do not have permission to access this page.</h4> };
+    {<h4>You do not have permission to access this page.</h4> }
