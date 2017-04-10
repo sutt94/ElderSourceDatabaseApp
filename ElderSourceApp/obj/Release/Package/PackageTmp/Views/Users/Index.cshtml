@@ -2,16 +2,28 @@
 @{
     ViewBag.Title = "Index";
 }
+<script type="text/javascript">
+    window.setTimeout(function() {
+        window.location.href = '@Url.Action("Index", "Home")';
+    }, 3000);
+</script>
 
-@if (ViewBag.displayMenu == "Yes")
+@if (User.IsInRole("Admin"))
 {
     <h4>Welcome <strong>@ViewBag.Name</strong>. You have succesfully logged in as an administrator. </h4>
     
         
     
 }
-else
+@if (User.IsInRole("AccountManager"))
 {
-    <h4>  Welcome <strong>@ViewBag.Name</strong> You have succesfully logged in as an employee. </h4>
+    <h4>Welcome <strong>@ViewBag.Name</strong>. You have succesfully logged in as an account manager. </h4>
+
+
+
+}
+@if (User.IsInRole("Employee"))
+{
+    <h4>  Welcome <strong>@ViewBag.Name</strong>. You have succesfully logged in as an employee. </h4>
 }  
 

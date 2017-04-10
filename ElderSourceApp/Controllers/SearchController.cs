@@ -44,6 +44,10 @@ namespace ElderSourceApp.Controllers
                    HasDeclaration = r.HasDeclaration,
                    InArrears = r.InArrears
                });
+            string val1 = Request.Form["companyName"];
+            string val2 = Request.Form["companyType"];
+            string val3 = Request.Form["city"];
+            string val4 = Request.Form["zipCode"];
 
             return View(model);
         }

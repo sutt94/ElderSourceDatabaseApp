@@ -2,6 +2,26 @@
 @{
     ViewBag.Title = "Index";
 }
+<head>
+    <script src="js/jquery.js"></script>
+    <script>
+            $(document).ready(function(){
+                document.getElementByName("companyName").value = localStorage.getItem("item1");
+                document.getElementByName("companyType").value = localStorage.getItem("item2");
+                document.getElementByName("city").value = localStorage.getItem("item3");
+                document.getElementByName("zipCode").value = localStorage.getItem("item4");
+            });
+    </script>
+    <script>
+            $(window).on('beforeunload', function() {
+                localStorage.setItem("item1", document.getElementByName("companyName").value);
+                localStorage.setItem("item2", document.getElementByName("companyType").value);
+                localStorage.setItem("item3", document.getElementByName("city").value);
+                localStorage.setItem("item4", document.getElementByName("zipCode").value);
+            });
+
+    </script>
+</head>
 <form method="get">
     <h2>Company Search</h2>
     @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
@@ -9,22 +29,22 @@
         <table style="width:40%">
             <tr>
                 <th>Company Name:</th>
-                <th><input type="search" name="companyName" /></th>
+                <td>@Html.TextBox("companyName")</td>
 
             </tr>
             <tr>
                 <td><b>Company Type:<b></b></td>
-                <td><input type="search" name="companyType" /></td>
+                <td>@Html.TextBox("companyType")</td>
 
             </tr>
             <tr>
                 <td><b>City:</b></td>
-                <td><input type="search" name="city" /></td>
+                <td>@Html.TextBox("city")</td>
 
             </tr>
             <tr>
                 <td><b>Zip Code:<b></b></td>
-                <td><input type="search" name="zipCode" /></td>
+                <td>@Html.TextBox("zipCode")</td>
 
             </tr>
             <tr>
