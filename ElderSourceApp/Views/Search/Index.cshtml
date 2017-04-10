@@ -17,34 +17,37 @@
             <h2>Company Search</h2>
 
             <form method="get" action="@Url.Action("Index")" data-elderscript-ajax="true" data-elderscript-target="#companyList">
-                <table style="width:40%">
-                    <tr>
-                        <th>Company Name:</th>
-                        <th><input type="search" name="companyName" data-elderscript-autocomplete="@Url.Action("Autocomplete")" /></th>
+               
+                <div class="section group">
+                    <div class="col span_1_of_2">
+                        <div class="col span_1_of_2"><b>Company Name:</b></div>
+                        <div class="col span_1_of_2"><input type="search" name="companyName" data-elderscript-autocomplete="@Url.Action("Autocomplete")" /></div>
+                    </div>
 
-                    </tr>
-                    <tr>
-                        <td><b>Company Type:</b></td>
-                        <td><input type="search" name="companyType" data-elderscript-autocomplete="@Url.Action("Autocomplete")" /></td>
+                    <div class="col span_1_of_5">
+                        <div class="col span_1_of_2"><b>Company Type:</b></div>
+                        <div class="col span_1_of_2"><input type="search" name="companyType" data-elderscript-autocomplete="@Url.Action("Autocomplete")" /></div>
 
-                    </tr>
-                    <tr>
-                        <td><b>City:</b></td>
-                        <td><input type="search" name="city" data-elderscript-autocomplete="@Url.Action("Autocomplete")" /></td>
+                    </div>
 
-                    </tr>
-                    <tr>
-                        <td><b>Zip Code:</b></td>
-                        <td><input type="search" name="zipCode" /></td>
+                    <div class="col span_1_of_5">
+                        <div class="col span_1_of_2"><b>City:</b></div>
+                        <div class="col span_1_of_2"><input type="search" name="city" data-elderscript-autocomplete="@Url.Action("Autocomplete")" /></div>
 
-                    </tr>
-                    <tr>
-                        <td><input type="submit" value="Search" /></td>
+                    </div>
 
-                    </tr>
-                </table>
+                    <div class="col span_1_of_5">
+                        <div class="col span_1_of_2"><b>Zip Code:</b></div>
+                        <div class="col span_1_of_2"><input type="search" name="zipCode" /></div>
+
+                    </div>
+                    <div class="span_1_of_2">
+                        <div><input type="submit" value="Search" /></div>
+
+                    </div>
+                </div>
             </form>
-
+            <br />
 
             @Html.Partial("_Companies", Model)
 
