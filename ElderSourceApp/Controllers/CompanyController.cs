@@ -11,6 +11,7 @@ using ElderSourceApp.Models;
 namespace ElderSourceApp.Controllers
 {
     [Authorize(Roles = "Admin")]
+    [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class CompanyController : Controller
     {
         private CompanyContext db = new CompanyContext();

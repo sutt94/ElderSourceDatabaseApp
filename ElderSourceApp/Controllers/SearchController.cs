@@ -5,17 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using ElderSourceApp.Models;
 using System.Net;
+using PagedList;
 
 namespace ElderSourceApp.Controllers
 {
     [Authorize(Roles = "Admin, AccountManager, Employee")]
+    [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class SearchController : Controller
     {
         // GET: Search
         CompanyContext _db = new CompanyContext();
         private object db;
 
-        public ActionResult Index(string companyName = null, string companyType = null, string city = null, string zipCode = null)
+        public ActionResult Index(int page = 1, string companyName = null, string companyType = null, string city = null, string zipCode = null)
         {
             var model =
                _db.Company
@@ -43,11 +45,16 @@ namespace ElderSourceApp.Controllers
                    HasPolicies = r.HasPolicies,
                    HasDeclaration = r.HasDeclaration,
                    InArrears = r.InArrears
-               });
+               }).ToPagedList(page, 10);
             string val1 = Request.Form["companyName"];
             string val2 = Request.Form["companyType"];
             string val3 = Request.Form["city"];
             string val4 = Request.Form["zipCode"];
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Companies", model);
+            }
 
             return View(model);
         }

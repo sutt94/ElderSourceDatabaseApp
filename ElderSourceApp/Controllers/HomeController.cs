@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ElderSourceApp.Controllers
 {
+    [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class HomeController : Controller
     {
         public ActionResult Index()

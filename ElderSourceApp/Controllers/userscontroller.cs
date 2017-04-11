@@ -13,6 +13,7 @@ namespace ElderSourceApp.Controllers
     
 {
     [Authorize]
+    [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class userscontroller : Controller
     {
         // GET: userscontroller
@@ -33,7 +34,7 @@ namespace ElderSourceApp.Controllers
             }
             else
             {
-                ViewBag.Name = "Not Logged IN";
+                ViewBag.Name = "Not Logged In";
             }
             return View();
         }
