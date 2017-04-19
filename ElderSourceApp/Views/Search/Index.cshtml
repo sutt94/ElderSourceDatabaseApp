@@ -2,26 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<head>
-    <script src="js/jquery.js"></script>
-    <script>
-            $(document).ready(function(){
-                document.getElementByName("companyName").value = localStorage.getItem("item1");
-                document.getElementByName("companyType").value = localStorage.getItem("item2");
-                document.getElementByName("city").value = localStorage.getItem("item3");
-                document.getElementByName("zipCode").value = localStorage.getItem("item4");
-            });
-    </script>
-    <script>
-            $(window).on('beforeunload', function() {
-                localStorage.setItem("item1", document.getElementByName("companyName").value);
-                localStorage.setItem("item2", document.getElementByName("companyType").value);
-                localStorage.setItem("item3", document.getElementByName("city").value);
-                localStorage.setItem("item4", document.getElementByName("zipCode").value);
-            });
 
-    </script>
-</head>
 <form method="get">
     <h2>Company Search</h2>
     @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
@@ -79,7 +60,7 @@
 
 
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.OrderBy(x => x.CompanyName))
             {
 
 

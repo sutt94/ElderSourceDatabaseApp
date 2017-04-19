@@ -164,3 +164,7 @@ C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.Owin.
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.csprojResolveAssemblyReference.cache
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.dll
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.pdb
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\PagedList.dll
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\PagedList.Mvc.dll
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\PagedList.xml
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\PagedList.Mvc.xml

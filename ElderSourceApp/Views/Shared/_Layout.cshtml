@@ -17,11 +17,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Prism", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                   
 @if (User.IsInRole("Admin"))
 {
     <li>@Html.ActionLink("Account Management", "Index", "AccountAdmin", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
