@@ -286,6 +286,7 @@
     <None Include="Properties\PublishProfiles\PrismUpdated.pubxml" />
     <None Include="Properties\PublishProfiles\Windows Server Package.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\elderscript.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -351,6 +352,7 @@
     <Content Include="Views\AccountAdmin\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\AccountAdmin\Delete.cshtml" />
     <Content Include="Views\Search\Details.cshtml" />
+    <Content Include="Views\Search\_Companies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PagedList;
 
 namespace ElderSourceApp.Models
 {
@@ -14,6 +15,7 @@ namespace ElderSourceApp.Models
         public String ZipCode { get; set; }
         public String CompanyType { get; set; }
         public String Phone { get; set; }
+        public String Address { get; set; }
         public Boolean HasSymbol { get; set; }
         public Boolean EmployeesTrained { get; set; }
         public Boolean HasPolicies { get; set; }
