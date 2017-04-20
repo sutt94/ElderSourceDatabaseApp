@@ -167,3 +167,4 @@ C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.Owin.
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.dll
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.pdb
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.csprojResolveAssemblyReference.cache
