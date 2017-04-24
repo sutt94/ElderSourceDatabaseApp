@@ -4,6 +4,16 @@
     ViewBag.Title = "Edit A Company";
 }
 
+<!-- cdn for modernizr, if you haven't included it already -->
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+<!-- polyfiller file to detect and load polyfills -->
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+<script>
+  webshims.setOptions('waitReady', false);
+  webshims.setOptions('forms-ext', {types: 'date'});
+  webshims.polyfill('forms forms-ext');
+</script>
+
 <h2>Modify Company Data</h2>
 @if (User.IsInRole("Admin"))
 {
@@ -47,6 +57,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, "Address:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -117,20 +135,26 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.LastPaidDate, "Last Date Paid Dues:", htmlAttributes: new { @class = "control-label col-md-2" })
+
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.LastPaidDate)
-                    @Html.ValidationMessageFor(model => model.LastPaidDate, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.LastPaidDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastPaidDate, "", new { @class = "text-danger" })
             </div>
+
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.description, "Company Description:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.description)
-                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-                </div>
+                @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, "Private Notes:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Notes, new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - Prism</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,11 +16,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Prism", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                   
 @if (User.IsInRole("Admin"))
 {
     <li>@Html.ActionLink("Account Management", "Index", "AccountAdmin", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
@@ -30,14 +29,14 @@
 
     <li>@Html.ActionLink("Company Database Search", "Index", "Search")</li>
 
-    <li><a href="http://jordang.world:8080/reports/">Reports</a></li>
+    <li><a href="@System.Configuration.ConfigurationManager.ConnectionStrings["ReportServer"].ConnectionString"target="_blank">Reports</a></li>
 }
 
 @if (User.IsInRole("AccountManager"))
 {
         <li>@Html.ActionLink("Account Management", "Index", "AccountAdmin", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
-        <li>@Html.ActionLink("Company Database Search", "Index", "Search")</li>
+        
     }
 
 @if (User.IsInRole("Employee"))

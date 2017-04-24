@@ -1,85 +1,50 @@
-﻿@model IEnumerable<ElderSourceApp.Models.CompanyModel>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<ElderSourceApp.Models.CompanyListViewModel>
+
 @{
     ViewBag.Title = "Index";
 }
+<head>
+
+</head>
 
 
+<form method="get" action="@Url.Action("Index")" data-elderscript-ajax="true" data-elderscript-target="#companyList">
     <h2>Company Search</h2>
-<p>
-    @using (Html.BeginForm())
+    @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
     {
-    <p>
-        Name: @Html.TextBox("searchstring")
-        <input type="submit" value="Filter" />
-    </p>
-    }
-@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
-{
-      
-
-
-        <table class="table">
+        <table style="width:40%">
             <tr>
-                <th>
-                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink("Zip Code", "Index", new { sortOrder = ViewBag.ZipSortParm, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink("Service", "Index", new { sortOrder = ViewBag.ServiceSortParm, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink("Last Paid Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th>
-                    @Html.ActionLink("Phone Number", "Index", new { sortOrder = ViewBag.PhoneSortParm, currentFilter = ViewBag.CurrentFilter })
-                </th>
-                <th></th>
+                <th>Company Name:</th>
+                <td>@Html.TextBox("companyName")</td>
             </tr>
-
-
-
-            @foreach (var item in Model)
-            {
-
-
-
-                <tr>
-                    <td>
-                        @item.CompanyName
-                    </td>
-                    <td>
-                        @item.City
-                    </td>
-                    <td>
-                        @item.ZipCode
-                    </td>
-                    <td>
-                        @item.CompanyType
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastPaidDate)
-                    </td>
-                    <td>
-                        @item.Phone
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.CompanyModelID })
-                    </td>
-
-
-
-                </tr>
-
-
-
-
-            }
+            <tr>
+                <td><b>Company Type:</b></td>
+                <td>@Html.TextBox("companyType")</td>
+            </tr>
+            <tr>
+                <td><b>City:</b></td>
+                <td>@Html.TextBox("city")</td>
+            </tr>
+            <tr>
+                <td><b>Zip Code:</b></td>
+                <td>@Html.TextBox("zipCode")</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Search" /></td>
+            </tr>
         </table>
+    
+
+    <br />
+        @Html.Partial("_Companies", Model)
+
+        <div class="pagedList" data-elderscript-target="#companyList">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                PagedListRenderOptions.MinimalWithItemCountText)
+        </div>
 
     }
     else

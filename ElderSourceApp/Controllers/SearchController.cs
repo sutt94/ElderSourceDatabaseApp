@@ -6,79 +6,58 @@ using System.Web.Mvc;
 using ElderSourceApp.Models;
 using System.Net;
 using PagedList;
+using PagedList.Mvc;
 
 namespace ElderSourceApp.Controllers
 {
     [Authorize(Roles = "Admin, AccountManager, Employee")]
+    [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class SearchController : Controller
     {
         // GET: Search
-        CompanyContext db = new CompanyContext();
-        
+        CompanyContext _db = new CompanyContext();
+        private object db;
 
-        public ActionResult Index(String searchstring, String sortOrder, String currentFilter, int? page)
+        public ActionResult Index(int page = 1, string companyName = null, string companyType = null, string city = null, string zipCode = null, string Address = null)
         {
+            var model =
+               _db.Company
+               .OrderByDescending(r => r.CompanyName)
+               .Where(r => !r.InArrears)
+               .Where(r => r.EmployeesTrained)
+               .Where(r => r.HasPolicies)
+               .Where(r => r.HasSymbol)
+               .Where(r => r.HasDeclaration)
+               .Where(r => companyName == null || r.CompanyName.Contains(companyName))
+               .Where(r => companyType == null || r.CompanyType.Contains(companyType))
+               .Where(r => city == null || r.City.Contains(city))
+               .Where(r => zipCode == null || r.ZipCode.Contains(zipCode))
+               .Select(r => new CompanyListViewModel
+               {
+                   CompanyModelID = r.CompanyModelID,
+                   CompanyName = r.CompanyName,
+                   City = r.City,
+                   State = r.State,
+                   ZipCode = r.ZipCode,
+                   CompanyType = r.CompanyType,
+                   Phone = r.Phone,
+                   HasSymbol = r.HasSymbol,
+                   EmployeesTrained = r.EmployeesTrained,
+                   HasPolicies = r.HasPolicies,
+                   HasDeclaration = r.HasDeclaration,
+                   InArrears = r.InArrears
+               }).ToPagedList(page, 10);
+            string val1 = Request.Form["companyName"];
+            string val2 = Request.Form["companyType"];
+            string val3 = Request.Form["city"];
+            string val4 = Request.Form["zipCode"];
 
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
-            ViewBag.CitySortParm = String.IsNullOrEmpty(sortOrder) ? "City" : "";
-            ViewBag.ZipSortParm = String.IsNullOrEmpty(sortOrder) ? "Zip Code" : "";
-            ViewBag.ServiceSortParm = String.IsNullOrEmpty(sortOrder) ? "Service" : "";
-            ViewBag.DateSortParm = String.IsNullOrEmpty(sortOrder) ? "Last Paid Date" : "";
-
-
-            if (searchstring != null)
+            if (Request.IsAjaxRequest())
             {
-                page = 1;
-            }
-            else
-            {
-                searchstring = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchstring;
-
-            var contacts = from c in db.Company
-                           select c;
-
-            if (!String.IsNullOrEmpty(searchstring))
-            {
-                contacts = contacts.Where(s => s.CompanyName.ToUpper().Contains(searchstring.ToUpper())
-                             || s.ZipCode.ToUpper().Contains(searchstring.ToUpper()) ||
-                             s.City.ToUpper().Contains(searchstring.ToUpper()) |
-                             s.State.ToUpper().Contains(searchstring.ToUpper()) | 
-                             s.Phone.ToUpper().Contains(searchstring.ToUpper()) |
-                             s.LastPaidDate.ToString().Contains(searchstring.ToUpper()));
-
-
-            }
-            switch (sortOrder)
-            {
-                case "Name":
-                    contacts = contacts.OrderBy(s => s.CompanyName);
-                    break;
-                case "City":
-                    contacts = contacts.OrderBy(s => s.City);
-                    break;
-                case "Zip Code":
-                    contacts = contacts.OrderBy(s => s.ZipCode);
-                    break;
-                case "Service":
-                    contacts = contacts.OrderBy(s => s.CompanyType);
-                    break;
-                case "Last Paid Date":
-                    contacts = contacts.OrderByDescending(s => s.LastPaidDate);
-                    break;
-                default:  // Name ascending 
-                    contacts = contacts.OrderBy(s => s.CompanyName);
-                    break;
+                return PartialView("_Companies", model);
             }
 
-
-
-
-
-            return View(contacts); 
+            return View(model);
         }
 
         public ActionResult Details(int? id)
@@ -87,7 +66,7 @@ namespace ElderSourceApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CompanyModel companyModel = db.Company.Find(id);
+            CompanyModel companyModel = _db.Company.Find(id);
             if (companyModel == null)
             {
                 return HttpNotFound();
@@ -96,4 +75,3 @@ namespace ElderSourceApp.Controllers
         }
     }
 }
-

@@ -7,10 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ElderSourceApp.Models;
-using PagedList;
-
-using System.Data.Entity.Infrastructure;
-
 
 namespace ElderSourceApp.Controllers
 {
@@ -20,71 +16,16 @@ namespace ElderSourceApp.Controllers
         private CompanyContext db = new CompanyContext();
 
         // GET: Company
-        public ActionResult Index(String searchstring, String sortOrder, String currentFilter, int? page)
+        public ActionResult Index(String searchstring)
         {
-            
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
-            ViewBag.CitySortParm = String.IsNullOrEmpty(sortOrder) ? "City" : "";
-            ViewBag.ZipSortParm = String.IsNullOrEmpty(sortOrder) ? "Zip Code" : "";
-            ViewBag.ServiceSortParm = String.IsNullOrEmpty(sortOrder) ? "Service" : "";
-            ViewBag.DateSortParm = String.IsNullOrEmpty(sortOrder) ? "Last Paid Date" : "";
-
-
-            if (searchstring != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchstring = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchstring;
-
-            var contacts = from c in db.Company
-                           select c;
-
+            var contact = from c in db.Company
+                          select c;
             if (!String.IsNullOrEmpty(searchstring))
             {
-                contacts = contacts.Where(s => s.CompanyName.ToUpper().Contains(searchstring.ToUpper())
-                             || s.ZipCode.ToUpper().Contains(searchstring.ToUpper())
-                             ||
-                             s.City.ToUpper().Contains(searchstring.ToUpper()) ||
-                             s.State.ToUpper().Contains(searchstring.ToUpper()) || 
-                             s.Phone.ToUpper().Contains(searchstring.ToUpper()) ||
-                             s.LastPaidDate.ToString().Contains(searchstring.ToUpper()));
-               
-
-            }
-            switch (sortOrder)
-            {
-                case "Name":
-                    contacts = contacts.OrderBy(s => s.CompanyName);
-                    break;
-                case "City":
-                    contacts = contacts.OrderBy(s => s.City);
-                    break;
-                case "Zip Code":
-                    contacts = contacts.OrderBy(s => s.ZipCode);
-                    break;
-                case "Service":
-                    contacts = contacts.OrderBy(s => s.CompanyType);
-                    break;
-                case "Last Paid Date":
-                    contacts = contacts.OrderByDescending(s => s.LastPaidDate);
-                    break;
-                default:  // Name ascending 
-                    contacts = contacts.OrderBy(s => s.CompanyName);
-                    break;
+                contact = contact.Where(s => s.CompanyName.Contains(searchstring));
             }
 
-
-
-
-
-            return View(contacts);
-
+            return View(contact);
         }
 
         // GET: Company/Details/5
@@ -113,7 +54,7 @@ namespace ElderSourceApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyModelID,CompanyName,City,State,ZipCode,CompanyType,Phone,HasSymbol,EmployeesTrained,HasPolicies,HasDeclaration,InArrears, LastPaidDate, description")] CompanyModel companyModel)
+        public ActionResult Create([Bind(Include = "CompanyModelID,CompanyName,City,State,ZipCode,Address,CompanyType,Phone,HasSymbol,EmployeesTrained,HasPolicies,HasDeclaration,InArrears, LastPaidDate, description, Notes")] CompanyModel companyModel)
         {
             if (ModelState.IsValid)
             {
@@ -145,7 +86,7 @@ namespace ElderSourceApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyModelID,CompanyName,City,State,ZipCode,CompanyType,Phone,HasSymbol,EmployeesTrained,HasPolicies,HasDeclaration,InArrears,LastPaidDate, description")] CompanyModel companyModel)
+        public ActionResult Edit([Bind(Include = "CompanyModelID,CompanyName,City,State,ZipCode,Address,CompanyType,Phone,HasSymbol,EmployeesTrained,HasPolicies,HasDeclaration,InArrears, LastPaidDate, description, Notes")] CompanyModel companyModel)
         {
             if (ModelState.IsValid)
             {
@@ -191,6 +132,38 @@ namespace ElderSourceApp.Controllers
             base.Dispose(disposing);
         }
 
-        
+        public ActionResult Search(string companyName = null, string companyType = null, string city = null, string zipCode = null)
+        {
+            var model =
+               db.Company
+               .OrderByDescending(r => r.CompanyName)
+               .Where(r => !r.InArrears)
+               .Where(r => r.EmployeesTrained)
+               .Where(r => r.HasPolicies)
+               .Where(r => r.HasSymbol)
+               .Where(r => r.HasDeclaration)
+               .Where(r => companyName == null || r.CompanyName.StartsWith(companyName))
+               .Where(r => companyType == null || r.CompanyType.StartsWith(companyType))
+               .Where(r => city == null || r.City.StartsWith(city))
+               .Where(r => zipCode == null || r.ZipCode.StartsWith(zipCode))
+               .Select(r => new CompanyListViewModel
+               {
+                   CompanyModelID = r.CompanyModelID,
+                   CompanyName = r.CompanyName,
+                   City = r.City,
+                   State = r.State,
+                   ZipCode = r.ZipCode,
+                   CompanyType = r.CompanyType,
+                   Phone = r.Phone,
+                   HasSymbol = r.HasSymbol,
+                   EmployeesTrained = r.EmployeesTrained,
+                   HasPolicies = r.HasPolicies,
+                   HasDeclaration = r.HasDeclaration,
+                   InArrears = r.InArrears
+               });
+
+            return View(model);
+        }
+
     }
 }

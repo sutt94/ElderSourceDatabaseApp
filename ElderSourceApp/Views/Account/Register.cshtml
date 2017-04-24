@@ -3,22 +3,23 @@
     ViewBag.Title = "Account Creation";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>Create A User Account</h2>
 
-@if (User.IsInRole("Admin") || (User.IsInRole("AccountManager")))
+@if (User.IsInRole("Admin") )
 {
 
 using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new user account.</h4>
+    
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.Email ,"Email Address:", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email)
         </div>
     </div>
 
@@ -27,6 +28,7 @@ using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "fo
         @Html.LabelFor(m => m.UserName, "UserName:", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserName)
         </div>
     </div>
 
@@ -34,6 +36,7 @@ using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "fo
         @Html.LabelFor(m => m.firstName, "First Name:", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.firstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.firstName)
         </div>
     </div>
 
@@ -41,6 +44,7 @@ using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "fo
         @Html.LabelFor(m => m.lastName, "Last Name:", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.lastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.lastName)
         </div>
     </div>
 
@@ -48,12 +52,14 @@ using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "fo
         @Html.LabelFor(m => m.Password, "Password:", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, "Confirm Password:", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword)
         </div>
     </div>
 
@@ -70,11 +76,88 @@ using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "fo
             <input type="submit" class="btn btn-default" value="Create Account" />
         </div>
     </div>
+    <div>
+        @Html.ActionLink("Back to list", "Index", "AccountAdmin") 
+    </div>
     }
-}else
-{
-    <h4>You do not have permission to access this page.</h4>
 }
+@if (User.IsInRole("AccountManager"))
+{
+
+    using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+
+    {
+        @Html.AntiForgeryToken()
+
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, "Email Address:", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName, "UserName:", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.firstName, "First Name:", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.firstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.firstName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.lastName, "Last Name:", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.lastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.lastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, "Password:", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, "Confirm Password:", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </div>
+        </div>
+      
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserRoles, "User Role", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.UserRoles, new { @readonly = "readonly", @Value = "Employee", @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Create Account" />
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Back to list", "Index", "AccountAdmin")
+        </div>
+    }
+}
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}  
+                }  

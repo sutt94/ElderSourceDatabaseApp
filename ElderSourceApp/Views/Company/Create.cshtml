@@ -51,6 +51,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Address, "Address", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.CompanyType, "Service Type:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CompanyType, new { htmlAttributes = new { @class = "form-control" } })
@@ -65,8 +73,6 @@
                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
             </div>
         </div>
-        
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.HasSymbol, "Outward Symbol:", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -117,13 +123,17 @@
                 </div>
             </div>
         </div>
+
         <div class="form-group">
-            @Html.LabelFor(model => model.LastPaidDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastPaidDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastPaidDate, "", new { @class = "text-danger" })
-            </div>
+            @Html.LabelFor(model => model.LastPaidDate, "Last Date Paid Dues:", htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastPaidDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastPaidDate, "", new { @class = "text-danger" })
+                </div>
+            
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.description, "Company Description:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -131,6 +141,15 @@
                 @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Notes, "Private Notes:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Notes, new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -149,6 +168,18 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<!-- jQuery UI CSS Reference -->
+<link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" />
+<!-- Required jQuery and jQuery UI Javascript references -->
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.10.4.min.js")"></script>
+<!-- Code to wire up your DatePicker -->
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker();
+    })
+</script>
 }
 
 }

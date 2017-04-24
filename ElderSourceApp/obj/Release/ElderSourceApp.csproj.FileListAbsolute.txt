@@ -124,6 +124,8 @@ C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.Owin.
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Newtonsoft.Json.dll
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Owin.dll
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\PagedList.dll
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\PagedList.Mvc.dll
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\System.Web.Helpers.dll
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\System.Web.Mvc.dll
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\System.Web.Optimization.dll
@@ -138,6 +140,8 @@ C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.AI.We
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.ApplicationInsights.xml
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\PagedList.xml
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\PagedList.Mvc.xml
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\System.Web.Helpers.xml
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\System.Web.Mvc.xml
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\System.Web.Optimization.xml
@@ -161,6 +165,6 @@ C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.Owin.
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.csprojResolveAssemblyReference.cache
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.dll
 C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.pdb
+C:\Users\Billy\Desktop\ElderSourceDatabaseApp\ElderSourceApp\obj\Release\ElderSourceApp.csprojResolveAssemblyReference.cache

@@ -14,46 +14,66 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Edit User Account</h4>
+        <h2>Update User Account</h2>
+
         <hr />
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary("", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Email, "Email Address:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Email, new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email)
                 @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.userName, "UserName", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.userName, "UserName:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.userName, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.userName, new { @readonly = "readonly", @class = "form-control"  } )
+                @Html.ValidationMessageFor(model => model.userName)
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.firstName, "First Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.firstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.firstName)
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.lastName, "Last Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.lastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.lastName)
             </div>
         </div>
+@if (User.IsInRole("Admin")) { 
         <div class="form-group">
             @Html.Label("Roles", new { @class = "control-label col-md-2" })
             <span class=" col-md-10">
                 @foreach (var item in Model.RolesList)
                 {
-                    <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
-                    @Html.Label(item.Value, new { @class = "control-label" })
+                    <input type="radio" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                    @Html.Label(item.Value, new { @class = "control-label"})
                 }
             </span>
         </div>
+}
+else
+{
+    <div class="form-group">
+        
+        <span class=" col-md-10">
+            @foreach (var item in Model.RolesList)
+            {
+                <input type="radio" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" style="display:none" new { } />
+                   
+            }
+        </span>
+    </div>
+}
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

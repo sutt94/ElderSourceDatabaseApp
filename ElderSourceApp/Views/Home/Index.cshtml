@@ -1,22 +1,32 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<!-- cdn for modernizr, if you haven't included it already -->
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+<!-- polyfiller file to detect and load polyfills -->
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+<script>
+  webshims.setOptions('waitReady', false);
+  webshims.setOptions('forms-ext', {types: 'date'});
+  webshims.polyfill('forms forms-ext');
+</script>
 
 <div class="jumbotron text-center">
-    <h1>Prism Prototype Company Management System</h1>
-    <p> Welcome to the Prism prototype! Prism is a company management system being developed for ElderSource Institute. Please log in to begin.</p>
+    <h1>Prism Company Management System</h1>
+    <p> Welcome to Prism! Prism is a company management system developed for ElderSource. Please log in to begin.</p>
     
 </div>
-@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+@if (User.IsInRole("Employee"))
 {
 <div class="row">
+    
     <div class="col-md-4">
-        
+
         <p>
-            
+
 
         </p>
-        
+
     </div>
 
     <div class="col-md-4" align="center">
@@ -24,11 +34,54 @@
         <p>Start searching the company database using our fast and simple company search system!</p>
         <p>  <a class="btn btn-default" href="@Url.Action("Index", "Search")">Start Searching! &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-      
-
-
-    </div>
+    
     
 </div>
+}
+@if (User.IsInRole("AccountManager"))
+{
+    <div class="row">
+        
+        <div class="col-md-4">
+
+            <p>
+
+
+            </p>
+
+        </div>
+
+        <div class="col-md-4" align="center">
+            <h2>Prism Account Management</h2>
+            <p>Start managing user accounts with our easy to use account management system!</p>
+            <p>  <a class="btn btn-default" href="@Url.Action("Index", "AccountAdmin")">Start Managing Accounts! &raquo;</a></p>
+        </div>
+        
+
+    </div>
+}
+@if (User.IsInRole("Admin"))
+{
+    <div class="row">
+       
+
+        <div class="col-md-4" align="center">
+            <h2>Prism Account Management</h2>
+            <p>Start managing user accounts with our easy to use account management system!</p>
+            <p>  <a class="btn btn-default" href="@Url.Action("Index", "AccountAdmin")">Start Managing Accounts! &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4" align="center">
+            <h2>Prism Company Search</h2>
+            <p>Start searching the company database using our fast and simple company search system!</p>
+            <p>  <a class="btn btn-default" href="@Url.Action("Index", "Search")">Start Searching! &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4" align="center">
+            <h2>Prism Company Management</h2>
+            <p>Start managing companies with out easy to use company management system!</p>
+            <p>  <a class="btn btn-default" href="@Url.Action("Index", "Company")">Start Managing Companies! &raquo;</a></p>
+        </div>
+
+    </div>
 }
