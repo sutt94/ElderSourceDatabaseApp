@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=cs3solutions.database.windows.net;Initial Catalog=AzureElderSource;Persist Security Info=True;User ID=cs3solutions;Password=Moose1994" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Billy\\Desktop\\ElderSourceDatabaseApp\\ElderSourceApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="ReportServer-Web.config Connection String" description="ReportServer Connection String used in web.config by the application to access the database." defaultValue="http://jordang.world:8080/reports/browse/" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Billy\\Desktop\\ElderSourceDatabaseApp\\ElderSourceApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ReportServer']/@connectionString" />
+  </parameter>
+</parameters>

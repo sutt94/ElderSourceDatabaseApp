@@ -1,0 +1,77 @@
+﻿@model ElderSourceApp.Models.CompanyModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Company Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Company Name:
+        </dt>
+
+        <dd>
+           @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            City:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            State:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            Zip Code:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+        <dt>
+            Address:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            Service Type:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyType)
+        </dd>
+
+        <dt>
+            Phone Number:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            Company Description:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

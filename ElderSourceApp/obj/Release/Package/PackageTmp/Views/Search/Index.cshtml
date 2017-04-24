@@ -1,0 +1,51 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<ElderSourceApp.Models.CompanyListViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+
+</head>
+
+
+<form method="get" action="@Url.Action("Index")" data-elderscript-ajax="true" data-elderscript-target="#companyList">
+    <h2>Company Search</h2>
+    @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+    {
+        <table style="width:40%">
+            <tr>
+                <th>Company Name:</th>
+                <td>@Html.TextBox("companyName")</td>
+            </tr>
+            <tr>
+                <td><b>Company Type:</b></td>
+                <td>@Html.TextBox("companyType")</td>
+            </tr>
+            <tr>
+                <td><b>City:</b></td>
+                <td>@Html.TextBox("city")</td>
+            </tr>
+            <tr>
+                <td><b>Zip Code:</b></td>
+                <td>@Html.TextBox("zipCode")</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Search" /></td>
+            </tr>
+        </table>
+    
+
+    <br />
+        @Html.Partial("_Companies", Model)
+
+        <div class="pagedList" data-elderscript-target="#companyList">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                PagedListRenderOptions.MinimalWithItemCountText)
+        </div>
+
+    }
+    else
+    {<h4>You do not have permission to access this page.</h4> }
